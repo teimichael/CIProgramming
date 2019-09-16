@@ -1,10 +1,11 @@
 package stu.napls.ciprogsolu.core;
 
-import javafx.util.Pair;
 import stu.napls.ciprogsolu.util.FileToolbox;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class P2018S {
 
