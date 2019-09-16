@@ -5,5 +5,5 @@ import stu.napls.ciprogsolu.constant.Question;
 
 public class Config {
     public static final String PROBLEM = Problem.P2016W;
-    public static final String QUESTION = Question.Q4;
+    public static final String QUESTION = Question.Q7;
 }

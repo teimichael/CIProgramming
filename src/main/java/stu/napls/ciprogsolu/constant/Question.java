@@ -7,4 +7,5 @@ public interface Question {
     String Q4 = "doQ4";
     String Q5 = "doQ5";
     String Q6 = "doQ6";
+    String Q7 = "doQ7";
 }
