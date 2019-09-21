@@ -14,12 +14,12 @@ public class P2018S {
         int n = 2;
         int[][] a = new int[m][n];
         int[][] b = new int[n][m];
-        int[][] c = matrixMultiply(a, b);
+        int[][] c = multiplyMatrices(a, b);
 
         System.out.println("2*m*m*n");
     }
 
-    private int[][] matrixMultiply(int[][] a, int[][] b) {
+    private int[][] multiplyMatrices(int[][] a, int[][] b) {
         int m = a.length;
         int n = a[0].length;
         int[][] c = new int[m][m];
@@ -66,9 +66,12 @@ public class P2018S {
     }
 
     public void doQ3() throws IOException {
+        // Load matrices
         int[][] m1 = getMatrixFromFile(this.getClass().getClassLoader().getResource("p2018s/file/mat1.txt").getPath());
         int[][] m2 = getMatrixFromFile(this.getClass().getClassLoader().getResource("p2018s/file/mat2.txt").getPath());
-        int[][] productM = matrixMultiply(m1, m2);
+        // Do multiplication
+        int[][] productM = multiplyMatrices(m1, m2);
+        // Print matrix on the console
         printMatrix(productM);
 
         int trace = 0;
@@ -83,61 +86,78 @@ public class P2018S {
         int n = 2;
         int s = 4;
 
-        LinkedList<String> cache = new LinkedList<>();
-        Map<String, Integer> cacheValue = new HashMap<>();
-        int counter = 0;
-
         int[][] a = new int[m][n];
         int[][] b = new int[n][m];
-
         int[][] c = new int[m][m];
 
-        int p1Value, p2Value;
-        String p1Key, p2Key;
+        // LinkedList is for the implementation of LRU and stores the cache key.
+        LinkedList<String> cache = new LinkedList<>();
+        // Map mocks the cache and constructs mapping between cache key and cache value.
+        Map<String, Integer> cacheMap = new HashMap<>();
+        // Counter for times of memory reading
+        int counter = 0;
+
+        // Temp variable to store current element key in matrix a and b respectively.
+        String aKey, bKey;
+        // Temp variable to store current element value in matrix a and b respectively.
+        int aValue, bValue;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < m; j++) {
                 int d = 0;
                 for (int k = 0; k < n; k++) {
-                    p1Key = "a-" + i + "-" + k;
-                    p2Key = "b-" + k + "-" + j;
-                    if (cacheValue.containsKey(p1Key)) {
-                        cache.remove(p1Key);
-                        cache.offerLast(p1Key);
-                        p1Value = cacheValue.get(p1Key);
+                    // Define the format of cache key:
+                    aKey = "a-" + i + "-" + k;
+                    bKey = "b-" + k + "-" + j;
+                    if (cacheMap.containsKey(aKey)) {
+                        // Cache hit
+                        // Change the position of hit cache (Remove from the first and add to the last)
+                        cache.remove(aKey);
+                        cache.offerLast(aKey);
+                        // Obatin value from the cache
+                        aValue = cacheMap.get(aKey);
                     } else {
-                        p1Value = a[i][k];
+                        // Cache miss
+                        aValue = a[i][k];
+                        // Increase the counter
                         counter++;
                         // Try to add to cache
                         if (cache.size() < s) {
-                            cache.offerLast(p1Key);
-                            cacheValue.put(p1Key, p1Value);
+                            // Cache is not full
+                            cache.offerLast(aKey);
+                            cacheMap.put(aKey, aValue);
                         } else {
+                            // Remove the head element in the cache
                             String key = cache.poll();
-                            cacheValue.remove(key);
+                            cacheMap.remove(key);
                         }
                     }
-                    if (cacheValue.containsKey(p2Key)) {
-                        cache.remove(p2Key);
-                        cache.offerLast(p2Key);
-                        p2Value = cacheValue.get(p2Key);
+                    // Below shares the same logic with the above
+                    if (cacheMap.containsKey(bKey)) {
+                        // Cache hit
+                        cache.remove(bKey);
+                        cache.offerLast(bKey);
+                        bValue = cacheMap.get(bKey);
                     } else {
-                        p2Value = b[k][j];
+                        // Cache miss
+                        bValue = b[k][j];
                         counter++;
                         // Try to add to cache
                         if (cache.size() < s) {
-                            cache.offerLast(p2Key);
-                            cacheValue.put(p2Key, p2Value);
+                            cache.offerLast(bKey);
+                            cacheMap.put(bKey, bValue);
                         } else {
                             String key = cache.poll();
-                            cacheValue.remove(key);
+                            cacheMap.remove(key);
                         }
                     }
-                    d += p1Value * p2Value;
+
+                    d += aValue * bValue;
                 }
                 c[i][j] = d;
             }
         }
-        System.out.println(counter);
+        System.out.println("The total number of read operations is: " + counter);
+        System.out.println("with m = " + m + ", n = " + n + ", s = " + s);
     }
 
     public void doQ5() throws IOException {
@@ -163,12 +183,125 @@ public class P2018S {
                 }
             }
         }
-
         printMatrix(c);
     }
 
-    public void doQ6() {
+    public void doQ6() throws IOException {
+        int m = 3;
+        int n = 4;
+        int p = 1;
+        int s = 10;
+        int[][] a = getMatrixFromFile(this.getClass().getClassLoader().getResource("p2018s/file/mat1.txt").getPath());
+        int[][] b = getMatrixFromFile(this.getClass().getClassLoader().getResource("p2018s/file/mat2.txt").getPath());
 
+        int counter = multiplyMatricesWithP(m, n, p, s, a, b, true);
+        System.out.println("The total number of read operations is: " + counter);
+        System.out.println("with m = " + m + ", n = " + n + ", p = " + p + ", s = " + s);
+    }
+
+    // Print the result directly and return the counter for memory reading.
+    private int multiplyMatricesWithP(int m, int n, int p, int s, int[][] a, int[][] b, boolean enablePrint) {
+        int[][] c = new int[m][m];
+
+        // LinkedList is for the implementation of LRU and stores the cache key.
+        LinkedList<String> cache = new LinkedList<>();
+        // Map mocks the cache and constructs mapping between cache key and cache value.
+        Map<String, Integer> cacheMap = new HashMap<>();
+        // Counter for times of memory reading
+        int counter = 0;
+
+        // Temp variable to store current element key in matrix a and b respectively.
+        String aKey, bKey;
+        // Temp variable to store current element value in matrix a and b respectively.
+        int aValue, bValue;
+        for (int u = 0; u < m; u += p) {
+            for (int v = 0; v < m; v += p) {
+                for (int w = 0; w < n; w += p) {
+                    for (int i = u; i < u + p; i++) {
+                        for (int j = v; j < v + p; j++) {
+                            int d = 0;
+                            for (int k = w; k < w + p; k++) {
+                                // Define the format of cache key:
+                                aKey = "a-" + i + "-" + k;
+                                bKey = "b-" + k + "-" + j;
+                                if (cacheMap.containsKey(aKey)) {
+                                    // Cache hit
+                                    // Change the position of hit cache (Remove from the first and add to the last)
+                                    cache.remove(aKey);
+                                    cache.offerLast(aKey);
+                                    // Obatin value from the cache
+                                    aValue = cacheMap.get(aKey);
+                                } else {
+                                    // Cache miss
+                                    aValue = a[i][k];
+                                    // Increase the counter
+                                    counter++;
+                                    // Try to add to cache
+                                    if (cache.size() < s) {
+                                        // Cache is not full
+                                        cache.offerLast(aKey);
+                                        cacheMap.put(aKey, aValue);
+                                    } else {
+                                        // Remove the head element in the cache
+                                        String key = cache.poll();
+                                        cacheMap.remove(key);
+                                    }
+                                }
+                                // Below shares the same logic with the above
+                                if (cacheMap.containsKey(bKey)) {
+                                    // Cache hit
+                                    cache.remove(bKey);
+                                    cache.offerLast(bKey);
+                                    bValue = cacheMap.get(bKey);
+                                } else {
+                                    // Cache miss
+                                    bValue = b[k][j];
+                                    counter++;
+                                    // Try to add to cache
+                                    if (cache.size() < s) {
+                                        cache.offerLast(bKey);
+                                        cacheMap.put(bKey, bValue);
+                                    } else {
+                                        String key = cache.poll();
+                                        cacheMap.remove(key);
+                                    }
+                                }
+                                d += aValue * bValue;
+                            }
+                            c[i][j] += d;
+                        }
+                    }
+                }
+            }
+        }
+        if (enablePrint) {
+            System.out.println("The result of multiplication is: ");
+            printMatrix(c);
+        }
+        return counter;
+    }
+
+    // The simplest and brute-force method but works
+    public void doQ7() {
+        int m = 200;
+        int n = 150;
+        int s = 600;
+        // Create any two matrices satisfying the size requirement for test.
+        int[][] a = new int[m][n];
+        int[][] b = new int[n][m];
+        int p = 1;
+        int minCount = multiplyMatricesWithP(m, n, p, s, a, b, false);
+
+        // Iterate all the common dividers of a and b to calculate the minimum
+        for (int i = 2; i <= m && i <= n; i++) {
+            if (m % i == 0 && n % i == 0) {
+                // p is the common divider
+                if (multiplyMatricesWithP(m, n, i, s, a, b, false) <= minCount) {
+                    p = i;
+                }
+            }
+        }
+        System.out.println("Such p is: " + p);
     }
 
     private void printMatrix(int[][] matrix) {
@@ -178,6 +311,7 @@ public class P2018S {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
 }
