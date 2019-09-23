@@ -2,6 +2,7 @@ package stu.napls.ciprogsolu.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -31,4 +32,11 @@ public class FileToolbox {
         fileReader.close();
         return content;
     }
+
+    public static void writeFileFromString(String path, String content) throws IOException {
+        FileWriter fileWriter = new FileWriter(path);
+        fileWriter.write(content);
+        fileWriter.close();
+    }
+
 }
