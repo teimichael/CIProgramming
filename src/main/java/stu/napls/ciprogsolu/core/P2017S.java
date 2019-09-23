@@ -92,9 +92,10 @@ public class P2017S {
         // Slide window
         char[][] window;
 
+        // Parsed value of the window
         int windowValue;
 
-        // Get character list with indices of the start and end cursor.
+        // Get character list with indices of the start and end cursor in canvas.
         ArrayList<int[]> characterList = getCharacterList(canvas);
         int start, end, fontWidth;
         for (int i = 0; i < characterList.size(); i++) {
@@ -255,8 +256,6 @@ public class P2017S {
 
     public void doQ5() throws IOException {
         Canvas canvas = new Canvas(this.getClass().getClassLoader().getResource("p2017s/file/out5.txt").getPath());
-        System.out.println(canvas.width);
-        System.out.println(canvas.height);
         System.out.println("The number is: " + recognizeNumberFromCanvas(canvas));
     }
 
@@ -266,9 +265,10 @@ public class P2017S {
         // Slide window
         char[][] window;
 
+        // Recognized value
         int windowValue;
 
-        // Get character list with indices of the start and end cursor.
+        // Get character list with indices of the start and end cursor in canvas.
         ArrayList<int[]> characterList = getCharacterList(canvas);
 
         int start, end, fontWidth;
@@ -281,7 +281,7 @@ public class P2017S {
                 for (int k = 0; k < FONT_HEIGHT; k++) {
                     System.arraycopy(canvas.content[j + k], start, window[k], 0, fontWidth);
                 }
-                showWindow(window);
+//                showWindow(window);
                 windowValue = getProbableWindowValue(window);
                 if (windowValue != -1) {
                     result.append(windowValue);
@@ -301,12 +301,14 @@ public class P2017S {
         if (window[0].length == FONT_WIDTH_1 || window[0].length == (FONT_WIDTH_1 + 1)) {
             for (int i = 0; i < FONT_HEIGHT; i++) {
                 isLegal = false;
+                // If not all elements in this row are ' ', then it's legal
                 for (int j = 0; j < window[i].length; j++) {
                     if (window[i][j] != ' ') {
                         isLegal = true;
                         break;
                     }
                 }
+                // If not legal, return -1 directly
                 if (!isLegal) {
                     return windowValue;
                 }
@@ -333,12 +335,16 @@ public class P2017S {
                         verticalLineNumber++;
                     }
                 }
+
+                // If not all elements in this row are ' ', then it's legal
                 for (int j = 0; j < legacyChecker.length(); j++) {
                     if (legacyChecker.charAt(j) != ' ') {
                         isLegal = true;
                         break;
                     }
                 }
+
+                // If not legal, return -1 directly
                 if (!isLegal) {
                     return windowValue;
                 }
@@ -361,10 +367,12 @@ public class P2017S {
                     break;
                 }
                 cost = 0;
+
                 // Number of vertical lines should be the same
                 if (verticalLineNumber == alphabetComponent.get(i)[1]) {
                     String character = alphabetMapWithIntegerAsKey.get(i);
 
+                    // Cost means how many elements are different between window and normal character
                     for (int j = 0; j < windowStr.length(); j++) {
                         if (windowStr.charAt(j) != character.charAt(j)) {
                             cost++;
