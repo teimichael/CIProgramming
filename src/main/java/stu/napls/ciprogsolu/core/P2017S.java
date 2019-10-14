@@ -25,6 +25,11 @@ public class P2017S {
         canvas.writeToFile("out1.txt");
     }
 
+    /**
+     *
+     * @param num
+     * @return Canvas object of the render result
+     */
     private Canvas renderNormal(int num) {
 
         String number = String.valueOf(num);
@@ -70,6 +75,11 @@ public class P2017S {
         return canvas;
     }
 
+    /**
+     *
+     * @param number
+     * @return the number of 1 in the input number
+     */
     private int getNumberOf1(String number) {
         int result = 0;
         for (int i = 0; i < number.length(); i++) {
@@ -85,7 +95,11 @@ public class P2017S {
         System.out.println("The number is: " + getNumberFromCanvas(canvas));
     }
 
-    // A more generic solution that can be used in later questions
+    /**
+     * A more generic solution that can be used in later questions
+     * @param canvas
+     * @return the number in the input Canvas
+     */
     private int getNumberFromCanvas(Canvas canvas) {
         StringBuilder result = new StringBuilder();
 
@@ -117,10 +131,12 @@ public class P2017S {
         return Integer.parseInt(result.toString());
     }
 
-    /*
-        Split canvas by vertical space line to get character list
-        ArrayList<[startOfCursor, endOfCursor]>
-        [start, end]
+    /**
+     * Split canvas by vertical space line to get character list
+     * ArrayList<[startOfCursor, endOfCursor]>
+     * [start, end]
+     * @param canvas
+     * @return character list
      */
     private ArrayList<int[]> getCharacterList(Canvas canvas) {
         ArrayList<int[]> characterList = new ArrayList<>();
@@ -166,6 +182,11 @@ public class P2017S {
         return characterList;
     }
 
+    /**
+     * Obtain the value in the input window
+     * @param window
+     * @return the value of window
+     */
     private int getWindowValue(char[][] window) {
         int windowValue = -1;
         // Transform window to String
@@ -189,6 +210,11 @@ public class P2017S {
         canvas.writeToFile("out3.txt");
     }
 
+    /**
+     *
+     * @param num
+     * @return Canvas object of the render result
+     */
     private Canvas renderSpecific(String num) {
         String[] meta = num.split(",");
         String number = meta[0];
@@ -259,6 +285,11 @@ public class P2017S {
         System.out.println("The number is: " + recognizeNumberFromCanvas(canvas));
     }
 
+    /**
+     *
+     * @param canvas
+     * @return recognized number of the input canvas
+     */
     private int recognizeNumberFromCanvas(Canvas canvas) {
         StringBuilder result = new StringBuilder();
 
@@ -292,6 +323,11 @@ public class P2017S {
         return Integer.parseInt(result.toString());
     }
 
+    /**
+     *
+     * @param window
+     * @return the probable value of the window
+     */
     private int getProbableWindowValue(char[][] window) {
         int windowValue = -1;
 
@@ -417,6 +453,11 @@ public class P2017S {
             }
         }
 
+        /**
+         * Save canvas to a file
+         * @param path
+         * @throws IOException
+         */
         private void writeToFile(String path) throws IOException {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < content.length; i++) {
@@ -428,6 +469,9 @@ public class P2017S {
             FileToolbox.writeFileFromString(path, stringBuilder.toString());
         }
 
+        /**
+         * Show the canvas
+         */
         private void show() {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {

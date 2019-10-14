@@ -6,6 +6,11 @@ public class P2016W {
         System.out.println("The value of f(100) is: " + f(n));
     }
 
+    /**
+     * Function f
+     * @param n
+     * @return
+     */
     private long f(int n) {
         long result = 1;
         if (n < 1) {
@@ -47,6 +52,13 @@ public class P2016W {
         System.out.println("The value of f(1000000) is: " + tempValue);
     }
 
+    /**
+     * Extended function f to support the calculation of a big number
+     * @param n
+     * @param boundary
+     * @param value
+     * @return
+     */
     private long f2(int n, int boundary, long value) {
         long result = value;
         if (n < boundary) {
@@ -63,6 +75,11 @@ public class P2016W {
         System.out.println(g2(3, 1, 1));
     }
 
+    /**
+     * Function g
+     * @param n
+     * @return
+     */
     private long g(int n) {
         long result = 1;
         if (n < 1) {
@@ -79,6 +96,11 @@ public class P2016W {
         System.out.println(getKFromG(n));
     }
 
+    /**
+     * Calculate k
+     * @param n
+     * @return number k
+     */
     private int getKFromG(int n) {
         long gn = g(n);
         System.out.println(gn);
@@ -99,6 +121,13 @@ public class P2016W {
         return k;
     }
 
+    /**
+     * Extended function g to support the calculation of a big number
+     * @param n
+     * @param boundary
+     * @param value
+     * @return
+     */
     private long g2(int n, int boundary, long value) {
         long result = value;
         if (n < boundary) {
@@ -115,6 +144,11 @@ public class P2016W {
         System.out.println(getKFromH(n));
     }
 
+    /**
+     * Calculate k
+     * @param n
+     * @return k
+     */
     private int getKFromH(int n) {
         long hn = h2(n, 1, 1);
         int k = 1;
@@ -135,6 +169,13 @@ public class P2016W {
         return k;
     }
 
+    /**
+     * Function h with the extended support for the calculation of a big number
+     * @param n
+     * @param boundary
+     * @param value
+     * @return
+     */
     private long h2(int n, int boundary, long value) {
         long result = value;
         if (n < boundary) {

@@ -19,6 +19,12 @@ public class P2018S {
         System.out.println("2*m*m*n");
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return the product of matrices a and b
+     */
     private int[][] multiplyMatrices(int[][] a, int[][] b) {
         int m = a.length;
         int n = a[0].length;
@@ -46,6 +52,12 @@ public class P2018S {
         System.out.println("The number of columns is: " + matrix[0].length);
     }
 
+    /**
+     *
+     * @param path
+     * @return the matrix loaded from file
+     * @throws IOException
+     */
     private int[][] getMatrixFromFile(String path) throws IOException {
         // Read file as String
         String content = FileToolbox.readFileAsString(path);
@@ -199,7 +211,9 @@ public class P2018S {
         System.out.println("with m = " + m + ", n = " + n + ", p = " + p + ", s = " + s);
     }
 
-    // Print the result directly and return the counter for memory reading.
+    /**
+     * Print the result directly and return the counter for memory reading.
+     */
     private int multiplyMatricesWithP(int m, int n, int p, int s, int[][] a, int[][] b, boolean enablePrint) {
         int[][] c = new int[m][m];
 
@@ -281,7 +295,7 @@ public class P2018S {
         return counter;
     }
 
-    // The simplest and brute-force method but works
+    // todo: The simplest and brute-force method but works
     public void doQ7() {
         int m = 200;
         int n = 150;
@@ -304,6 +318,10 @@ public class P2018S {
         System.out.println("Such p is: " + p);
     }
 
+    /**
+     * Print a matrix
+     * @param matrix
+     */
     private void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {

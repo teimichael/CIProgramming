@@ -6,4 +6,5 @@ public interface Problem {
     String P2018S = PACKAGE_NAME + "P2018S";
     String P2017S = PACKAGE_NAME + "P2017S";
     String P2016W = PACKAGE_NAME + "P2016W";
+    String P2016S = PACKAGE_NAME + "P2016S";
 }

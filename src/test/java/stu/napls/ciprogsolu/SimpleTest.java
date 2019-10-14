@@ -15,6 +15,9 @@ public class SimpleTest {
 
     @Test
     public void testSth() {
-        LinkedList<Pair<String, Integer>> cache = new LinkedList<>();
+        char a = 'a';
+        char b = 'b';
+        System.out.println(String.valueOf(a)+(b));
+
     }
 }

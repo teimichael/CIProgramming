@@ -129,6 +129,11 @@ public class P2019S {
         }
     }
 
+    /**
+     *
+     * @param cluster
+     * @return central pixel
+     */
     private Pixel getClusterCentralPixel(ArrayList<Pixel> cluster) {
         int clusterSize = cluster.size();
         int centralR = 0;
@@ -157,6 +162,12 @@ public class P2019S {
         return centralPixel;
     }
 
+    /**
+     *
+     * @param pixels
+     * @param pixel
+     * @return the cluster id the pixel belongs to
+     */
     private int getClusterId(ArrayList<Pixel> pixels, Pixel pixel) {
         int clusterId = 0;
         int distance = getDistance(pixels.get(0), pixel);
@@ -171,10 +182,24 @@ public class P2019S {
         return clusterId;
     }
 
+    /**
+     *
+     * @param p1
+     * @param p2
+     * @return the distance between two pixels
+     */
     private int getDistance(Pixel p1, Pixel p2) {
         return Math.abs(p1.r - p2.r) + Math.abs(p1.g - p2.g) + Math.abs(p1.b - p2.b);
     }
 
+    /**
+     *
+     * @param p
+     * @param r
+     * @param g
+     * @param b
+     * @return the distance between two pixels
+     */
     private int getDistance(Pixel p, int r, int g, int b) {
         return Math.abs(p.r - r) + Math.abs(p.g - g) + Math.abs(p.b - b);
     }
