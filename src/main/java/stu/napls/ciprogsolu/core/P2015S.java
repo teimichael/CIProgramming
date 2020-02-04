@@ -4,10 +4,11 @@ import stu.napls.ciprogsolu.util.FileToolbox;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class P2015S {
 
-    private ArrayList<String> contentList;
+    private List<String> contentList;
 
     public P2015S() throws IOException {
         // Read file as an ArrayList
@@ -29,7 +30,10 @@ public class P2015S {
     }
 
     public void doQ2() {
-        
+        List<String> lines = new ArrayList<>();
+        for (int i = 0; i < this.contentList.size(); i++) {
+
+        }
     }
 
     public void doQ3() {

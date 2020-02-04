@@ -1,9 +1,6 @@
 package stu.napls.ciprogsolu;
 
-import javafx.util.Pair;
 import org.junit.Test;
-
-import java.util.LinkedList;
 
 public class SimpleTest {
 
