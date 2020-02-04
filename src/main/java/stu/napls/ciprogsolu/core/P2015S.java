@@ -12,7 +12,7 @@ public class P2015S {
 
     public P2015S() throws IOException {
         // Read file as an ArrayList
-        this.contentList = FileToolbox.readFileAsList(this.getClass().getClassLoader().getResource("p2016s/file/program.txt").getPath());
+        this.contentList = FileToolbox.readFileAsList(this.getClass().getClassLoader().getResource("p2015s/file/program.txt").getPath());
         for (int i = 0; i < this.contentList.size(); i++) {
             System.out.println(contentList.get(i));
         }
@@ -29,10 +29,13 @@ public class P2015S {
         System.out.println("The number of semi-colons is: " + counter);
     }
 
+    // All the lines containing in the *main* function.
     public void doQ2() {
         List<String> lines = new ArrayList<>();
         for (int i = 0; i < this.contentList.size(); i++) {
+            if (this.contentList.get(i).contains("main")) {
 
+            }
         }
     }
 
