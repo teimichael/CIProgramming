@@ -1,6 +1,6 @@
 package stu.napls.ciprogsolu.core;
 
-public class P2016W {
+public class P2015W {
     public void doQ1() {
         int n = 100;
         System.out.println("The value of f(100) is: " + f(n));

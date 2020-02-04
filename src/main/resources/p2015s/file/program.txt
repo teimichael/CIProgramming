@@ -5,20 +5,33 @@ void print(int a) {
 }
 
 int main(int argc, char *argv[]) {
-    int a, b;
-    a = 1;
-    a = a + 1;
-    a = a + 1;
-    b = a;
-    a = 1;
-    print(a);
-    print(a);
-    print(a);
-    print(b);
-    print(a);
-    print(b);
-
-    return a;
+    int variableA, variableB, vaiableC, variableeD;
+    variableA = 1000;
+    variableB = 2000;
+    vaiableC = 3000;
+    variableeD = 4000;
+    variableA = variableA + 1;
+    variableA = variableA + 1;
+    variableB = variableA;
+    variableA = 1;
+    print(variableA);
+    print(variableA);
+    print(variableA);
+    print(variableA);
+    print(variableB);
+    print(variableA);
+    print(variableB);
+    print(variableB);
+    print(variableA);
+    variableA = 1000;
+    variableB = 2000;
+    vaiableC = 3000;
+    variableeD = 4000;
+    print(variableA);
+    print(variableA);
+    print(variableA);
+    print(variableA);
+    return variableA;
 }
 
 void swap(int a, int b) {
