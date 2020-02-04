@@ -265,4 +265,41 @@ public class P2015S {
         return codeBlockBuilder.toString();
     }
 
+    public static void main(String[] args) {
+        int variableA, variableB, vaiableC, variableeD;
+        variableA = 1000;
+        variableB = 2000;
+        vaiableC = 3000;
+        variableeD = 4000;
+        variableA = variableA + 1;
+        variableA = variableA + 1;
+        variableB = variableA;
+        variableA = 1;
+        print(variableA);
+        print(variableA);
+        print(variableA);
+        print(variableA);
+        print(variableB);
+        print(variableA);
+        print(variableB);
+        print(variableB);
+        print(variableA);
+        variableA = 1000;
+        variableB = 2000;
+        vaiableC = 3000;
+        variableeD = 4000;
+        print(variableA);
+        print(variableA);
+        print(variableA);
+        print(variableA);
+        variableA = 1000;
+        variableB = 2000;
+        vaiableC = 3000;
+        variableeD = 4000;
+    }
+
+    private static void print(int n) {
+        System.out.println(n);
+    }
+
 }

@@ -31,6 +31,11 @@ int main(int argc, char *argv[]) {
     print(variableA);
     print(variableA);
     print(variableA);
+    variableA = 1000;
+    variableB = 2000;
+    vaiableC = 3000;
+    variableeD = 4000;
+
     return variableA;
 }
 
