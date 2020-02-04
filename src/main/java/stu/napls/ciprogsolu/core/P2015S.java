@@ -44,7 +44,13 @@ public class P2015S {
     }
 
     public void doQ3() {
+        String lineTemp="";
+        for (int i = 0; i < this.contentList.size(); i++) {
+            if (lineTemp.equals(this.contentList.get(i))) {
 
+            }
+//            lineTemp = this.contentList
+        }
     }
 
     public void doQ4() {

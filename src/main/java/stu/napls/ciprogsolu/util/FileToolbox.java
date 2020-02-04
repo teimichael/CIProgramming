@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileToolbox {
     public static String readFileAsString(String path) throws IOException {
@@ -31,6 +32,12 @@ public class FileToolbox {
         bufferedReader.close();
         fileReader.close();
         return content;
+    }
+
+    public static String[] readFileAsStringArray(String path) throws IOException {
+        List<String> contentList = readFileAsList(path);
+
+        return contentList.toArray(new String[0]);
     }
 
     public static void writeFileFromString(String path, String content) throws IOException {
