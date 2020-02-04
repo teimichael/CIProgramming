@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+void print(int a) {
+    printf("%d", a);
+}
+
 int main(int argc, char *argv[]) {
     int a, b;
     a = 1;
@@ -7,7 +11,18 @@ int main(int argc, char *argv[]) {
     a = a + 1;
     b = a;
     a = 1;
-    printf("%d", a);
+    print(a);
+    print(a);
+    print(a);
+    print(b);
+    print(a);
+    print(b);
 
     return a;
+}
+
+void swap(int a, int b) {
+    int c = a;
+    a = b;
+    b = c;
 }

@@ -13,9 +13,6 @@ public class P2015S {
     public P2015S() throws IOException {
         // Read file as an ArrayList
         this.contentList = FileToolbox.readFileAsList(this.getClass().getClassLoader().getResource("p2015s/file/program.txt").getPath());
-        for (int i = 0; i < this.contentList.size(); i++) {
-            System.out.println(contentList.get(i));
-        }
     }
 
     public void doQ1() {
@@ -31,12 +28,19 @@ public class P2015S {
 
     // All the lines containing in the *main* function.
     public void doQ2() {
-        List<String> lines = new ArrayList<>();
+        int mainStart = -1;
+        int mainEnd = -1;
+        String line;
         for (int i = 0; i < this.contentList.size(); i++) {
-            if (this.contentList.get(i).contains("main")) {
-
+            line = this.contentList.get(i);
+            if (line.contains("main") && line.contains("{")) {
+                mainStart = i;
+            } else if (line.startsWith("}") && mainStart != -1) {
+                mainEnd = i;
+                break;
             }
         }
+        System.out.println("The main function starts from line " + (mainStart + 1) + " and ends in line " + (mainEnd + 1));
     }
 
     public void doQ3() {
