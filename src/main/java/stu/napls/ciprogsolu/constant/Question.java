@@ -8,4 +8,5 @@ public interface Question {
     String Q5 = "doQ5";
     String Q6 = "doQ6";
     String Q7 = "doQ7";
+    String Q8 = "doQ8";
 }

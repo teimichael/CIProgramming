@@ -1,6 +1,5 @@
 package stu.napls.ciprogsolu.core;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import stu.napls.ciprogsolu.util.FileToolbox;
 
 import java.io.IOException;
