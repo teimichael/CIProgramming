@@ -62,18 +62,11 @@ public class P2015S {
     }
 
     public void doQ3() {
-        // Store the lines to be printed
-        int[] printLine = new int[this.contentList.size()];
-        String lineTemp = this.contentList.get(0);
-        for (int i = 1; i < this.contentList.size(); i++) {
-            if (lineTemp.equals(this.contentList.get(i)) && printLine[i - 1] == 0) {
-                printLine[i] = 1;
-            }
-            lineTemp = this.contentList.get(i);
-        }
-        for (int i = 0; i < printLine.length; i++) {
-            if (printLine[i] == 1) {
-                System.out.println(this.contentList.get(i));
+        String line;
+        for (int i = 1; i < this.contentList.size() - 1; i++) {
+            line = this.contentList.get(i);
+            if (line.equals(this.contentList.get(i - 1)) && !line.equals(this.contentList.get(i + 1))) {
+                System.out.println(line);
             }
         }
     }
@@ -239,8 +232,6 @@ public class P2015S {
                     // Generate the block window
                     blockWindow = buildCodeBlock(k, j);
                     if (codeBlock.equals(blockWindow)) {
-                        System.out.println(codeBlock);
-                        System.out.println(blockWindow);
                         similarBlockList.add(new Pair<>(k + 1, k + j));
                         break;
                     }
@@ -255,7 +246,7 @@ public class P2015S {
 
     private String buildCodeBlock(int start, int size) {
         StringBuilder codeBlockBuilder = new StringBuilder();
-        for (int i = start; i < i + size; i++) {
+        for (int i = start; i < start + size; i++) {
             codeBlockBuilder.append(this.contentList.get(i));
         }
         return codeBlockBuilder.toString();
