@@ -1,6 +1,5 @@
 package stu.napls.ciprogsolu.core;
 
-import javafx.util.Pair;
 import stu.napls.ciprogsolu.util.FileToolbox;
 
 import java.io.IOException;
@@ -100,18 +99,22 @@ public class P2015S {
     }
 
     public void doQ5() {
-        // List<Pair<LinePair, LinePair>> := A list of line pairs.
-        // Pair<Integer, String> := Pair<LineNumber, LineCode>
-        List<Pair<Pair<Integer, String>, Pair<Integer, String>>> similarLinePairList = new ArrayList<>();
+        // List<Map<LinePair, LinePair>> := A pair of line.
+        // Map<Integer, String> := Map<LineNumber, LineCode>
+        List<Map<Integer, String>> similarLinePairList = new ArrayList<>();
 
         String currentLine, nextLine;
+        Map<Integer, String> linePair;
         for (int i = 0; i < this.contentList.size(); i++) {
             currentLine = this.contentList.get(i);
             if (currentLine.length() >= 20) {
                 for (int j = i + 1; j < this.contentList.size(); j++) {
                     nextLine = this.contentList.get(j);
                     if (!currentLine.equals(nextLine) && isSimilarForQ5(currentLine, nextLine)) {
-                        similarLinePairList.add(new Pair<>(new Pair<>(i + 1, currentLine), new Pair<>(j + 1, nextLine)));
+                        linePair = new HashMap<>();
+                        linePair.put(i + 1, currentLine);
+                        linePair.put(j + 1, nextLine);
+                        similarLinePairList.add(linePair);
                     }
                 }
             }
@@ -153,36 +156,37 @@ public class P2015S {
         return result;
     }
 
-    private void printSimilarLinePairList(List<Pair<Pair<Integer, String>, Pair<Integer, String>>> similarLinePairList) {
-        Pair<Pair<Integer, String>, Pair<Integer, String>> linePair;
-        Pair<Integer, String> lineA, lineB;
+    private void printSimilarLinePairList(List<Map<Integer,String>> similarLinePairList) {
+        Map<Integer,String> linePair;
         for (int i = 0; i < similarLinePairList.size(); i++) {
             linePair = similarLinePairList.get(i);
             System.out.println("Pair " + i + ": ");
-            lineA = linePair.getKey();
-            System.out.println("Line " + lineA.getKey() + ": ");
-            System.out.println(lineA.getValue());
-            lineB = linePair.getValue();
-            System.out.println("Line " + lineB.getKey() + ": ");
-            System.out.println(lineB.getValue());
+            for(Map.Entry<Integer, String> entry : linePair.entrySet()){
+                System.out.println("Line " + entry.getKey() + ": ");
+                System.out.println(entry.getValue());
+            }
             System.out.println();
         }
         System.out.println("The number of pairs is: " + similarLinePairList.size());
     }
 
     public void doQ6() {
-        // List<Pair<LinePair, LinePair>> := A list of line pairs.
-        // Pair<Integer, String> := Pair<LineNumber, LineCode>
-        List<Pair<Pair<Integer, String>, Pair<Integer, String>>> similarLinePairList = new ArrayList<>();
+        // List<Map<LinePair, LinePair>> := A pair of line.
+        // Map<Integer, String> := Map<LineNumber, LineCode>
+        List<Map<Integer, String>> similarLinePairList = new ArrayList<>();
 
         String currentLine, nextLine;
+        Map<Integer, String> linePair;
         for (int i = 0; i < this.contentList.size(); i++) {
             currentLine = this.contentList.get(i);
             if (currentLine.length() >= 20) {
                 for (int j = i + 1; j < this.contentList.size(); j++) {
                     nextLine = this.contentList.get(j);
                     if (!currentLine.equals(nextLine) && isSimilarForQ6(currentLine, nextLine)) {
-                        similarLinePairList.add(new Pair<>(new Pair<>(i + 1, currentLine), new Pair<>(j + 1, nextLine)));
+                        linePair = new HashMap<>();
+                        linePair.put(i + 1, currentLine);
+                        linePair.put(j + 1, nextLine);
+                        similarLinePairList.add(linePair);
                     }
                 }
             }
@@ -228,12 +232,13 @@ public class P2015S {
     }
 
     public void doQ7() {
-        // Pair<StartLineNumber, EndLineNumber>
-        List<Pair<Integer, Integer>> similarBlockList = new ArrayList<>();
+        // Map<StartLineNumber, EndLineNumber>
+        List<int[]> similarBlockList = new ArrayList<>();
         Set<String> duplicateSet = new HashSet<>();
 
         String codeBlock;
         String blockWindow;
+        int[] blockEnds ;
         // Window size
         for (int j = 4; j < this.contentList.size() / 2 + 1; j++) {
             for (int i = 0; i < this.contentList.size() - j; i++) {
@@ -244,7 +249,10 @@ public class P2015S {
                     // Generate the block window
                     blockWindow = buildCodeBlock(k, j);
                     if (codeBlock.equals(blockWindow) && !duplicateSet.contains(codeBlock)) {
-                        similarBlockList.add(new Pair<>(k + 1, k + j));
+                        blockEnds = new int[2];
+                        blockEnds[0] = k + 1;
+                        blockEnds[1] = k + j;
+                        similarBlockList.add(blockEnds);
                         duplicateSet.add(codeBlock);
                         break;
                     }
@@ -253,7 +261,7 @@ public class P2015S {
         }
 
         for (int i = 0; i < similarBlockList.size(); i++) {
-            System.out.println(similarBlockList.get(i).getKey() + " " + similarBlockList.get(i).getValue());
+            System.out.println(similarBlockList.get(i)[0] + " " + similarBlockList.get(i)[1]);
         }
     }
 

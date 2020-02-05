@@ -1,6 +1,7 @@
 package stu.napls.ciprogsolu.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PrintToolbox {
@@ -28,40 +29,37 @@ public class PrintToolbox {
     public static void print(int[] x) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < x.length; i++) {
-            list.add(i);
+            list.add(x[i]);
         }
         System.out.print(list);
     }
 
     public static void print(float[] x) {
-        List<Integer> list = new ArrayList<>();
+        List<Float> list = new ArrayList<>();
         for (int i = 0; i < x.length; i++) {
-            list.add(i);
+            list.add(x[i]);
         }
         System.out.print(list);
     }
 
     public static void print(double[] x) {
-        List<Integer> list = new ArrayList<>();
+        List<Double> list = new ArrayList<>();
         for (int i = 0; i < x.length; i++) {
-            list.add(i);
+            list.add(x[i]);
         }
         System.out.print(list);
     }
 
     public static void print(long[] x) {
-        List<Integer> list = new ArrayList<>();
+        List<Long> list = new ArrayList<>();
         for (int i = 0; i < x.length; i++) {
-            list.add(i);
+            list.add(x[i]);
         }
         System.out.print(list);
     }
 
     public static void print(String[] x) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < x.length; i++) {
-            list.add(i);
-        }
+        List<String> list = new ArrayList<>(Arrays.asList(x));
         System.out.print(list);
     }
 

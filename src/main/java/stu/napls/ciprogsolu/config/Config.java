@@ -4,6 +4,6 @@ import stu.napls.ciprogsolu.constant.Problem;
 import stu.napls.ciprogsolu.constant.Question;
 
 public class Config {
-    public static final String PROBLEM = Problem.P2014W;
-    public static final String QUESTION = Question.Q8;
+    public static final String PROBLEM = Problem.P2015S;
+    public static final String QUESTION = Question.Q7;
 }
