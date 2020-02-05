@@ -31,7 +31,7 @@ public class PrintToolbox {
         for (int i = 0; i < x.length; i++) {
             list.add(x[i]);
         }
-        System.out.print(list);
+        System.out.println(list);
     }
 
     public static void print(float[] x) {
@@ -39,7 +39,7 @@ public class PrintToolbox {
         for (int i = 0; i < x.length; i++) {
             list.add(x[i]);
         }
-        System.out.print(list);
+        System.out.println(list);
     }
 
     public static void print(double[] x) {
@@ -47,7 +47,7 @@ public class PrintToolbox {
         for (int i = 0; i < x.length; i++) {
             list.add(x[i]);
         }
-        System.out.print(list);
+        System.out.println(list);
     }
 
     public static void print(long[] x) {
@@ -55,12 +55,12 @@ public class PrintToolbox {
         for (int i = 0; i < x.length; i++) {
             list.add(x[i]);
         }
-        System.out.print(list);
+        System.out.println(list);
     }
 
     public static void print(String[] x) {
         List<String> list = new ArrayList<>(Arrays.asList(x));
-        System.out.print(list);
+        System.out.println(list);
     }
 
     public static void print(int[][] x) {
